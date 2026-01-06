@@ -22,18 +22,25 @@ export default function AvailableTickets() {
   const { mutate: signAndExecuteTransaction } = useSignAndExecuteTransaction();
 
   // Function to format date from "DDMMYYYY" to readable format
-  const formatDate = (dateStr: string) => {
-    if (!dateStr || dateStr.length !== 8) return dateStr;
-    const day = dateStr.substring(0, 2);
-    const month = dateStr.substring(2, 4);
-    const year = dateStr.substring(4, 8);
-    const date = new Date(`${year}-${month}-${day}`);
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    });
-  };
+  const formatDate = (rawDate: string | number) => {
+  // Pad with leading zero if the u64 lost it (e.g., 6032026 -> 06032026)
+  const dateStr = String(rawDate).padStart(8, '0');
+  
+  if (!dateStr || dateStr.length !== 8) return dateStr;
+  
+  const day = dateStr.substring(0, 2);
+  const month = dateStr.substring(2, 4);
+  const year = dateStr.substring(4, 8);
+  
+  const date = new Date(`${year}-${month}-${day}`);
+  
+  // Returns format: "March 6, 2026"
+  return date.toLocaleDateString('en-US', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  });
+};
 
   // Function to refetch all tickets
   const refetchTickets = () => {

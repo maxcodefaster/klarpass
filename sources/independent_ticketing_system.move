@@ -126,7 +126,6 @@ module independent_ticketing_system::independent_ticketing_system_nft {
         assert!(royalty_percentage >= 0 && royalty_percentage <= 100, INVALID_ROYALTY);
 
         let mut seat_numbers = vector::empty<u64>();
-        let ticket_name = string::utf8(b"Event Ticket NFT");
 
         // Create the event object first
         let mut event_object = EventObject {
@@ -145,7 +144,7 @@ module independent_ticketing_system::independent_ticketing_system_nft {
         while (i <= ticket_count) {
             let ticket = TicketNFT {
                 id: object::new(ctx),
-                name: ticket_name,
+                name: string::utf8(*string::bytes(&event_name)),
                 creator: sender,
                 owner: sender,
                 event_id,

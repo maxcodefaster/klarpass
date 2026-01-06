@@ -7,9 +7,9 @@ const { networkConfig, useNetworkVariable, useNetworkVariables } =
       url: getFullnodeUrl("devnet"),
       variables: {
         packageId:
-          "0x6f71ccdee36fe4f3ee59af20c9635feba8bac5df85ca5f0dde7eda2883ec4ef0",
+          "0xf7440e762360bc48cacfa5323d19d7bfff5c51ec9eb75920261d02ce6172f834",
         redemptionRegistry:
-          "0xad8cabd9579e64fa79cf3d47d04745c3673374cde26e55b35c318c1abb6a485e",
+          "0xd64a3e11a5d6a200465132d24c1810a28317b145155e1e9c0d1a2e0f7a2e227c",
       },
     },
     testnet: {
